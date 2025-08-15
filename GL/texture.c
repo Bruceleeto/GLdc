@@ -1837,7 +1837,7 @@ void APIENTRY glTexImage2D(GLenum target, GLint level, GLint internalFormat,
             }
         }
 
-        FASTCPY(targetData, conversionBuffer, destBytes);
+        memcpy(targetData, conversionBuffer, destBytes); //FASTCPY
         free(conversionBuffer);
     } else {
         /* No conversion necessary, we can just upload data directly */
