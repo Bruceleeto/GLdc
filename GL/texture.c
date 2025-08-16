@@ -625,7 +625,7 @@ void APIENTRY glGenTextures(GLsizei n, GLuint *textures) {
     gl_assert(TEXTURE_OBJECTS.element_size > 0);
 }
 
-void APIENTRY glDeleteTextures(GLsizei n, GLuint *textures) {
+void APIENTRY glDeleteTextures(GLsizei n, const GLuint *textures) {
     TRACE();
 
     gl_assert(TEXTURE_OBJECTS.element_size > 0);
