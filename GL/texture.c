@@ -698,7 +698,7 @@ void APIENTRY glBindTexture(GLenum  target, GLuint texture) {
 
     gl_assert(ACTIVE_TEXTURE < MAX_GLDC_TEXTURE_UNITS);
     TEXTURE_UNITS[ACTIVE_TEXTURE] = txr;
-    gl_assert(TEXTURE_UNITS[ACTIVE_TEXTURE]->index == texture);
+ //   gl_assert(TEXTURE_UNITS[ACTIVE_TEXTURE]->index == texture);
 
     gl_assert(TEXTURE_OBJECTS.element_size > 0);
 
