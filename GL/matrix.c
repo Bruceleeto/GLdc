@@ -277,44 +277,28 @@ void APIENTRY glOrtho(GLdouble left, GLdouble right,
 
 /* Set the GL frustum */
 void APIENTRY glFrustum(GLdouble left, GLdouble right,
-              GLdouble bottom, GLdouble top,
-              GLdouble znear, GLdouble zfar) {
+               GLdouble bottom, GLdouble top,
+               GLdouble znear, GLdouble zfar) {
 
-   printf("glFrustum input: l=%f r=%f b=%f t=%f n=%f f=%f\n", 
-          left, right, bottom, top, znear, zfar);
+    Matrix4x4 frustum __attribute__((aligned(32)));
+    MEMSET(frustum, 0, sizeof(float) * 16);
 
-   Matrix4x4 frustum __attribute__((aligned(32)));
-   MEMSET(frustum, 0, sizeof(float) * 16);
+    const float near2 = 2.0f * znear;
+    const float A = (right + left) / (right - left);
+    const float B = (top + bottom) / (top - bottom);
+    const float C = -((zfar + znear) / (zfar - znear));
+    const float D = -((2.0f * zfar * znear) / (zfar - znear));
 
-   const float near2 = 2.0f * znear;
-   printf("near2=%f\n", near2);
-   
-   const float rl_diff = right - left;
-   const float tb_diff = top - bottom;
-   const float fn_diff = zfar - znear;
-   printf("rl_diff=%f tb_diff=%f fn_diff=%f\n", rl_diff, tb_diff, fn_diff);
-   
-   const float A = (right + left) / (right - left);
-   const float B = (top + bottom) / (top - bottom);
-   const float C = -((zfar + znear) / (zfar - znear));
-   const float D = -((2.0f * zfar * znear) / (zfar - znear));
-   printf("A=%f B=%f C=%f D=%f\n", A, B, C, D);
+    frustum[M0] = near2 / (right - left);
+    frustum[M5] = near2 / (top - bottom);
 
-   frustum[M0] = near2 / (right - left);
-   frustum[M5] = near2 / (top - bottom);
-   printf("frustum[M0]=%f frustum[M5]=%f\n", frustum[M0], frustum[M5]);
+    frustum[M8] = A;
+    frustum[M9] = B;
+    frustum[M10] = C;
+    frustum[M11] = -1.0f;
+    frustum[M14] = D;
 
-   frustum[M8] = A;
-   frustum[M9] = B;
-   frustum[M10] = C;
-   frustum[M11] = -1.0f;
-   frustum[M14] = D;
-   
-   printf("Before _glMultMatrix: frustum[0]=%f [5]=%f [8]=%f [9]=%f [10]=%f [11]=%f [14]=%f\n",
-          frustum[M0], frustum[M5], frustum[M8], frustum[M9], 
-          frustum[M10], frustum[M11], frustum[M14]);
-
-   _glMultMatrix(&frustum);
+    _glMultMatrix(&frustum);
 }
 
 
