@@ -160,6 +160,8 @@ GL_FORCE_INLINE void TransformVertex(float x, float y, float z, float w, float* 
 
 void InitGPU(_Bool autosort, _Bool fsaa);
 
+void ShutdownGPU();
+
 static inline size_t GPUMemoryAvailable() {
     return pvr_mem_available();
 }

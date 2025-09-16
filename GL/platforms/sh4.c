@@ -53,6 +53,10 @@ void InitGPU(_Bool autosort, _Bool fsaa) {
 #endif
 }
 
+void ShutdownGPU() {
+    pvr_shutdown();
+}
+
 GL_FORCE_INLINE float _glFastInvert(float x) {
     return (1.0f / __builtin_sqrtf(x * x));
 }

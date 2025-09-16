@@ -54,6 +54,7 @@ static inline void TransformNormalNoMod(const float* xIn, float* xOut) {
 void TransformVertex(float x, float y, float z, float w, float* oxyz, float* ow);
 
 void InitGPU(_Bool autosort, _Bool fsaa);
+void ShutdownGPU();
 
 enum GPUPaletteFormat;
 
