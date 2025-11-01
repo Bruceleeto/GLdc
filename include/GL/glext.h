@@ -8,6 +8,7 @@
 #ifndef __GL_GLEXT_H
 #define __GL_GLEXT_H
 
+#include "gl.h"
 #include <sys/cdefs.h>
 __BEGIN_DECLS
 
