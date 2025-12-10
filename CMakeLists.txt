@@ -122,10 +122,10 @@ if(FLTO_SUPPORTED)
 endif()
 
 if(NOT PLATFORM_DREAMCAST)
-    set_target_properties(GL PROPERTIES
-        COMPILE_OPTIONS "-m32"
-        LINK_OPTIONS "-m32"
-    )
+set_target_properties(GL PROPERTIES
+    COMPILE_OPTIONS "-m32"
+    LINK_OPTIONS "-m32"
+)
 endif()
 
 link_libraries(m)
