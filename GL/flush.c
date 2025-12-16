@@ -103,6 +103,9 @@ void APIENTRY glKosShutdown() {
     aligned_vector_clear(&OP_LIST.vector);
     aligned_vector_clear(&PT_LIST.vector);
     aligned_vector_clear(&TR_LIST.vector);
+
+    ShutdownGPU();
+    _initialized = false;
 }
 
 void APIENTRY glKosInit() {

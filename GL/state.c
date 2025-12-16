@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "../include/GL/glext.h"
 #include "private.h"
 GLfloat HALF_LINE_WIDTH = 1.0f / 2.0f;
 GLfloat HALF_POINT_SIZE = 1.0f / 2.0f;
@@ -1009,7 +1010,10 @@ void APIENTRY glGetIntegerv(GLenum pname, GLint *params) {
         break;
         case GL_TEXTURE_BINDING_2D:
             *params = (_glGetBoundTexture()) ? _glGetBoundTexture()->index : 0;
-        break;
+            break;
+        case GL_TEXTURE_BINDING_CUBE_MAP_ARB:
+            *params = 0; // Cube maps not supported
+            break;
         case GL_DEPTH_FUNC:
             *params = GPUState.depth_func;
         break;

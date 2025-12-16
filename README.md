@@ -46,6 +46,11 @@ For a release build, replace the cmake line with with the following:
 cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/Dreamcast.cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
 ```
 
+For a release build WITHOUT building samples and tests, enter the following:
+```
+cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/Dreamcast.cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF ..
+```
+
 You will need KallistiOS compiled and configured (e.g. the KOS_BASE environment
 variable must be set)
 

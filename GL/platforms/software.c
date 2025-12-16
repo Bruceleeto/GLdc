@@ -54,6 +54,22 @@ void InitGPU(_Bool autosort, _Bool fsaa) {
     aligned_vector_init(&vbuffer, sizeof(SDL_Vertex));
 }
 
+void ShutdownGPU() {
+    aligned_vector_clear(&vbuffer);
+
+    if (RENDERER) {
+        SDL_DestroyRenderer(RENDERER);
+        RENDERER = NULL;
+    }
+
+    if (WINDOW) {
+        SDL_DestroyWindow(WINDOW);
+        WINDOW = NULL;
+    }
+
+    SDL_Quit();
+}
+
 void SceneBegin() {
     SDL_SetRenderDrawColor(RENDERER, BACKGROUND_COLOR[0], BACKGROUND_COLOR[1], BACKGROUND_COLOR[2], 0);
     SDL_RenderClear(RENDERER);
